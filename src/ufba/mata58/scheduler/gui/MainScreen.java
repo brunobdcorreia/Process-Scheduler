@@ -24,25 +24,18 @@ public class MainScreen implements ISceneCreation {
 	}
 
 	private GridPane createToolBar() {
-//		HBox toolBar = new HBox();
-//		toolBar.setPadding(new Insets(15,15,15,15));
-//		toolBar.setSpacing(12);
-//		toolBar.setStyle("-fx-background-color: #799FAE;");
-//		Button processesButton = new Button("Processes");
-//		Button simulationButton = new Button("Simulation");
-//		toolBar.getChildren().addAll(processesButton, simulationButton);
 		GridPane toolBar = new GridPane();
 		toolBar.setVgap(10);
 		toolBar.setHgap(10);
 		toolBar.setPadding(new Insets(10));
 		
 		Button processesButton = new Button("Processos");
-		Button simulationButton = new Button("Simulação");
+		Button simulationButton = new Button("SimulaÃ§Ã£o");
 		toolBar.add(processesButton, 0, 0);
 		toolBar.add(simulationButton, 1, 0);
 		
 		Text schedulingAlgorithms = new Text("Escalonamento:");
-		Text pagingAlgorithms = new Text ("Substituição:");
+		Text pagingAlgorithms = new Text ("SubstituiÃ§Ã£o:");
 		schedulingAlgorithms.setFont(Font.loadFont("file:resources/fonts/Inconsolata-Bold.ttf", 16));
 		pagingAlgorithms.setFont(Font.loadFont("file:resources/fonts/Inconsolata-Bold.ttf", 16));
 		
