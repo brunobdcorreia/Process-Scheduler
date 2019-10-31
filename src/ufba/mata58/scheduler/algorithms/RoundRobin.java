@@ -1,6 +1,6 @@
 package ufba.mata58.scheduler.algorithms;
 
-public class RoundRobin extends Algorithm {
+public class RoundRobin extends SchedulingAlgorithm {
 
 	@Override
 	protected void schedule() {
@@ -9,6 +9,7 @@ public class RoundRobin extends Algorithm {
 
 	@Override
 	protected double calculateTurnaroundTime() {
+
 		return 0;
 	}
 
