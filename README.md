@@ -1,2 +1,2 @@
-# Process-Scheduler
-Process Scheduling simulationi written in Java for an Operating Systems course.
+# Process Scheduler
+Process Scheduling simulation written in Java for an Operating Systems course.
