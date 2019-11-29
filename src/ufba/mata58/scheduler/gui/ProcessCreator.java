@@ -112,17 +112,17 @@ public class ProcessCreator extends GridPane {
 			&& (!deadlineTF.getText().isEmpty() || deadlineTF.getText() != null) && (!priorityTF.getText().isEmpty() || priorityTF.getText() != null) && 
 			(!nPagesTF.getText().isEmpty() || nPages.getText() != null)) {
 			
-			values.add(Integer.parseInt(arrivalTimeTF.getText()));
-			values.add(Integer.parseInt(executionTimeTF.getText()));
-			values.add(Integer.parseInt(deadlineTF.getText()));
-			values.add(Integer.parseInt(priorityTF.getText()));
-			values.add(Integer.parseInt(nPagesTF.getText()));
+			int pArrivalTime = Integer.parseInt(arrivalTimeTF.getText());
+			int pExecTime = Integer.parseInt(executionTimeTF.getText());
+			int pDeadline = Integer.parseInt(deadlineTF.getText());
+			int pPriority = Integer.parseInt(priorityTF.getText());
+			int pNumPages = Integer.parseInt(nPagesTF.getText());
 			
-			for(int i : values) {
-				System.out.println(i);
-			}
-			
-			System.out.println(values);
+			values.add(pArrivalTime);
+			values.add(pExecTime);
+			values.add(pDeadline);
+			values.add(pPriority);
+			values.add(pNumPages);
 		}
 		
 		else {
@@ -133,12 +133,8 @@ public class ProcessCreator extends GridPane {
 	}
 	
 	protected ProcessModel createProcess() {
-		List<Integer> values = parseTextFields();
-		
-		if(values == null) System.out.println("sa porra ta nula");
-		
-		ProcessModel model = new ProcessModel(values.get(0), values.get(1), values.get(2), values.get(3), values.get(4));
-		
+		List<Integer> values = parseTextFields();		
+		ProcessModel model = new ProcessModel(values.get(0), values.get(1), values.get(2), values.get(3), values.get(4));	
 		return model;
 	}
 }

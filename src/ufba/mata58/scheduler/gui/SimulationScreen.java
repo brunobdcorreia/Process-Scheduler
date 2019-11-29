@@ -1,13 +1,8 @@
 package ufba.mata58.scheduler.gui;
 
-import javafx.scene.Scene;
+import javafx.stage.Stage;
 
-public class SimulationScreen implements ISceneCreation{
-
-	@Override
-	public Scene createScene() {
-		
-		return null;
-	}
+public class SimulationScreen extends Stage {
+	
 	
 }
