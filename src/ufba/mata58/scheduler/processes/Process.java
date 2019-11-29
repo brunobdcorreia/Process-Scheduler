@@ -3,7 +3,7 @@ package ufba.mata58.scheduler.processes;
 import java.util.HashSet;
 import java.util.Random;
 
-public abstract class Process {
+public class Process {
 	protected static Random rand = new Random();
 	protected static HashSet<Integer> registeredPids = new HashSet<Integer>();
 	protected int processId = 0;
@@ -11,20 +11,24 @@ public abstract class Process {
 	protected int executionTime;
 	protected int deadline;
 	protected int priority;
+	protected int nPages;
 	protected boolean done = false;
+	protected ProcessState processState;
 	
-	
-	public Process(int arrivalTime, int executionTime, int deadline, int priority) {
+	public Process(int arrivalTime, int executionTime, int deadline, int priority, int nPages) {
 		int newPid = rand.nextInt(256);
 		
 		while(registeredPids.contains(newPid)) {
 			newPid = rand.nextInt(256);
 		}
 		
+		this.processId = newPid;
 		this.arrivalTime = arrivalTime;
 		this.executionTime = executionTime;
 		this.deadline = deadline;
 		this.priority = priority;
+		this.nPages = nPages;
+		this.processState = ProcessState.IDLE;
 	}
 
 	public int getArrivalTime() {
@@ -69,5 +73,18 @@ public abstract class Process {
 	
 	public void setDone(boolean finished) {
 		this.done = finished;
+	}
+	
+	public ProcessState getProcessState() {
+		return processState;
+	}
+	
+	public void setProcessState(ProcessState newState) {
+		this.processState = newState;
+	}
+	
+	@Override
+	public String toString() {
+		return "Pid: " + processId;
 	}
 }

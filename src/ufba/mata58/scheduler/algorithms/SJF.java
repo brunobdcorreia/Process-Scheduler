@@ -1,6 +1,6 @@
 package ufba.mata58.scheduler.algorithms;
 
-public class SJF extends SchedulingAlgorithm {
+public final class SJF extends SchedulingAlgorithm {
 
 	@Override
 	protected void schedule() {

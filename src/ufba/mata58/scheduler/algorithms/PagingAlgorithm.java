@@ -11,5 +11,15 @@ public abstract class PagingAlgorithm {
 		pageList = new ArrayDeque<Page>();
 	}
 	
+	public ArrayDeque<Page> getPageList() {
+		return pageList;
+	}
+
+
+
+	public void setPageList(ArrayDeque<Page> pageList) {
+		this.pageList = pageList;
+	}
+
 	protected abstract void replacePage();
 }
