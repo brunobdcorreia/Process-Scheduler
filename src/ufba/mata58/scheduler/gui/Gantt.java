@@ -16,7 +16,7 @@ public class Gantt extends ScrollPane {
 	
 	public Gantt() {
 		gantt = new GridPane();
-		int nRows = 3;
+		int nRows = Simulation.getProcesses().size();
 		int nColumns = 51;
 		
 		setPadding(new Insets(5));
