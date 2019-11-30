@@ -2,6 +2,7 @@ package ufba.mata58.scheduler.gui;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -29,6 +30,7 @@ import javafx.scene.shape.Shape;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import ufba.mata58.scheduler.main.Main;
 import ufba.mata58.scheduler.main.Simulation;
 import ufba.mata58.scheduler.processes.Process;
 
@@ -36,7 +38,7 @@ public class ProcessesScreen implements ISceneCreation {
 	
 	private BorderPane borderPane;
 	private ScrollPane processList;
-	private HBox processPane;
+	private static HBox processPane;
 	private ProcessCreator processCreator = new ProcessCreator();
 	private Rectangle buttonBG = new Rectangle(100.0, 30.0);
 	
@@ -74,24 +76,15 @@ public class ProcessesScreen implements ISceneCreation {
 		simulationButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				Stage simulationWindow = new Stage();
-				simulationWindow.setTitle("Simulação");
-				
-				Gantt gantt = new Gantt();
-				Scene root = new Scene(gantt);
-				simulationWindow.setScene(root);
-				
-				simulationWindow.show();
+				Stage simulationWindow = new SimulationScreen();
 			}
 		});
 		
 		settingsButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				Stage settingsWindow = new Stage();
-				settingsWindow.setTitle("Configurações");
-				settingsWindow.setResizable(false);
-				settingsWindow.show();
+				Stage settingsWindow = new SettingsScreen();
+				Main.changeStage(settingsWindow);
 			}
 			
 		});
@@ -183,14 +176,9 @@ public class ProcessesScreen implements ISceneCreation {
 			node.setOnMouseClicked(new EventHandler<MouseEvent>() {
 				@Override
 				public void handle(MouseEvent event) {
-					java.util.Random r = new java.util.Random();
-					int a1 = r.nextInt(13);
-					int a2 = r.nextInt(13);
-					int a3 = r.nextInt(13);
-					int a4 = r.nextInt(13);
-					int a5 = r.nextInt(13);
-					Process newProcess = new Process(a1,a2,a3,a4,a5);
-					ProcessModel newPM = new ProcessModel(a1,a2,a3,a4,a5);
+					List<Integer> pAttributes = processCreator.parseTextFields();
+					Process newProcess = new Process(pAttributes.get(0), pAttributes.get(1), pAttributes.get(2), pAttributes.get(3), pAttributes.get(4));
+					ProcessModel newPM = new ProcessModel(pAttributes.get(0), pAttributes.get(1), pAttributes.get(2), pAttributes.get(3), pAttributes.get(4));
 					processPane.getChildren().add(newPM);
 					Simulation.addProcess(newProcess);
 					processList.setHvalue(1);
@@ -235,5 +223,9 @@ public class ProcessesScreen implements ISceneCreation {
 		vbox.getChildren().addAll(createProcess, processList);
 		
 		return vbox;
+	}
+
+	public static HBox getProcessPane() {
+		return processPane;
 	}
 }

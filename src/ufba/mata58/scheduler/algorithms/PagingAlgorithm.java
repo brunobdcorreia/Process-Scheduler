@@ -21,5 +21,5 @@ public abstract class PagingAlgorithm {
 		this.pageList = pageList;
 	}
 
-	protected abstract void replacePage();
+	public abstract void replacePage();
 }

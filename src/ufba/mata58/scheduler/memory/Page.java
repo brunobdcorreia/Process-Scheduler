@@ -2,9 +2,12 @@ package ufba.mata58.scheduler.memory;
 
 public class Page {
 	private Process ownerProcess;
+	private int id;
 	private static short pageId = 1;
 	
-	public Page() { }
+	public Page() { 
+		id = pageId;
+	}
 
 	public Process getOwnerProcess() {
 		return ownerProcess;

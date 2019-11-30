@@ -1,11 +1,14 @@
 package ufba.mata58.scheduler.processes;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
 
+import ufba.mata58.scheduler.gui.ProcessModel;
+import ufba.mata58.scheduler.main.Simulation;
+import ufba.mata58.scheduler.memory.Page;
+
 public class Process {
-	protected static Random rand = new Random();
-	protected static HashSet<Integer> registeredPids = new HashSet<Integer>();
 	protected int processId = 0;
 	protected int arrivalTime;
 	protected int executionTime;
@@ -14,21 +17,21 @@ public class Process {
 	protected int nPages;
 	protected boolean done = false;
 	protected ProcessState processState;
+	protected ArrayList<Page> processPages;
 	
-	public Process(int arrivalTime, int executionTime, int deadline, int priority, int nPages) {
-		int newPid = rand.nextInt(256);
-		
-		while(registeredPids.contains(newPid)) {
-			newPid = rand.nextInt(256);
-		}
-		
-		this.processId = newPid;
+	public Process(int arrivalTime, int executionTime, int deadline, int priority, int nPages) {		
+		this.processId = Simulation.getProcesses().size() + 1;
 		this.arrivalTime = arrivalTime;
 		this.executionTime = executionTime;
 		this.deadline = deadline;
 		this.priority = priority;
 		this.nPages = nPages;
+		this.processPages = new ArrayList<Page>();
 		this.processState = ProcessState.IDLE;
+	}
+	
+	public int getPid() {
+		return processId;
 	}
 
 	public int getArrivalTime() {
@@ -83,6 +86,10 @@ public class Process {
 		this.processState = newState;
 	}
 	
+	public ArrayList<Page> getProcessPages() {
+		return processPages;
+	}
+
 	@Override
 	public String toString() {
 		return "Pid: " + processId;
