@@ -9,6 +9,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 import ufba.mata58.scheduler.main.Simulation;
 
 public class Gantt extends ScrollPane {
@@ -16,7 +17,7 @@ public class Gantt extends ScrollPane {
 	
 	public Gantt() {
 		gantt = new GridPane();
-		int nRows = 3;
+		int nRows = Simulation.getProcesses().size();
 		int nColumns = 51;
 		
 		setPadding(new Insets(5));
@@ -30,8 +31,17 @@ public class Gantt extends ScrollPane {
 		
 		setMaxWidth(600);
 		
-		for(int i = 0; i < nRows; ++i) {
-			for(int j = 0; j < nColumns; ++j) {
+		//Loop para adicionar labels dos processos nas linhas.
+		for(int i = 1; i <= nRows; i++) {
+			gantt.add(new Text("P" + i), 0, i);
+		}
+		
+		for(int i = 1; i < nColumns; i++) {
+			gantt.add(new Text("" + i), i, 0);
+		}
+		
+		for(int i = 1; i <= nRows; ++i) {
+			for(int j = 1; j < nColumns; ++j) {
 				gantt.add(new Rectangle(25, 25, Color.LIGHTGRAY), j, i);
 			}
 		}

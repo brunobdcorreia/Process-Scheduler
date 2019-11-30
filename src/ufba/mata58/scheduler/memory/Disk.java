@@ -1,28 +1,42 @@
 package ufba.mata58.scheduler.memory;
 
-import java.util.ArrayDeque;
+import java.util.ArrayList;
 import ufba.mata58.scheduler.processes.Process;
 import ufba.mata58.scheduler.processes.ProcessState;
 
 public class Disk {
-	private ArrayDeque<Process> awaiting;
+	private ArrayList<Process> awaiting;
 	private Process currentProcess;
 	
 	public Disk() {
-		awaiting = new ArrayDeque<Process>();
+		awaiting = new ArrayList<Process>();
 	}
 	
-	private void useDisk() {
-		awaiting.getFirst().setProcessState(ProcessState.IN_DISK);
-		currentProcess = awaiting.getFirst();
-		awaiting.removeFirst();
+	public void useDisk() {
+		awaiting.get(0).setProcessState(ProcessState.IN_DISK);
+		currentProcess = awaiting.get(0);
+		awaiting.remove(0);
 	}
 	
-	private void freeDisk() {
+	public Process freeDisk() {
+		Process process = currentProcess;
 		currentProcess = null;
+		return process;
 	}
 	
 	public Process getCurrentProcess() {
 		return currentProcess;
+	}
+
+	public ArrayList<Process> getAwaiting() {
+		return awaiting;
+	}
+
+	public void setAwaiting(ArrayList<Process> awaiting) {
+		this.awaiting = awaiting;
+	}
+
+	public void setCurrentProcess(Process currentProcess) {
+		this.currentProcess = currentProcess;
 	}
 }

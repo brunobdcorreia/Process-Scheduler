@@ -1,16 +1,25 @@
 package ufba.mata58.scheduler.memory;
 
-import java.util.ArrayDeque;
+import java.util.ArrayList;
+import ufba.mata58.scheduler.processes.Process;
 
 public class RAM {
 	private final byte capacity = 50;
-	private ArrayDeque<Page> pages;
+	private ArrayList<Page> pages;
 	
 	public RAM() { 
-		pages = new ArrayDeque<Page>();
-		
-		for(int i =  0; i < capacity; ++i) {
-			pages.add(new Page());
+		pages = new ArrayList<Page>(capacity);
+	}
+	
+	public void addProcess(Process p) {
+		if(p.getProcessPages().size() + pages.size() > capacity) {
+			//Troca as paginas.
+		} else {
+			for(Page page : p.getProcessPages()) {
+				if(page != null) {
+					pages.add(page);
+				}
+			}
 		}
 	}
 }

@@ -28,6 +28,10 @@ public class Main extends Application {
 		currentStage.setScene(newScene);
 	}
 	
+	public static void changeStage(Stage newStage) {
+		currentStage = newStage;
+	}
+	
 	public static void main(String[] args) {
 		launch(args);
 	}
